@@ -12,17 +12,15 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
-            rel="preload"
-            href="/KumbhSans/KumbhSans-Regular.ttf"
-            as="font"
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
             crossOrigin=""
           />
           <link
-            rel="preload"
-            href="/KumbhSans/KumbhSans-Bold.ttf"
-            as="font"
-            crossOrigin=""
+            href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+            rel="stylesheet"
           />
         </Head>
         <body>

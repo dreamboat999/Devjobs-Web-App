@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { media } from '../../styles/GlobalStyles';
+
 export const HeaderWrapper = styled.header`
   position: absolute;
   top: 0;
@@ -12,6 +14,16 @@ export const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${media.tablet} {
+    background-image: url('/images/tablet/bg-pattern-header.svg');
+  }
+
+  ${media.phone} {
+    background-image: url('./images/mobile/bg-pattern-header.svg');
+    border-bottom-left-radius: 0;
+    height: 13.6rem;
+  }
 `;
 
 export const HeaderContentWrapper = styled.div`

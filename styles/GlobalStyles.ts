@@ -5,28 +5,12 @@ const customMediaQuery = (maxWidth: number) =>
 
 export const media = {
   tablet: customMediaQuery(950),
-  phone: customMediaQuery(650),
+  phone: customMediaQuery(767),
 };
 
 export const GlobalStyles = createGlobalStyle`
 
-@font-face {
-  font-family:  'Kumbh Sans';
-  src: url("../public/KumbhSans/KumbhSans-Regular.ttf") format('truetype');
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
- 
-}
 
-@font-face {
-  font-family:  'Kumbh Sans';
-  src: url("../public/KumbhSans/KumbhSans-Bold.ttf") format('truetype');
-  font-style: bold;
-  font-weight: 700;
-  font-display: swap;
- 
-}
 
 :root {
 
@@ -70,6 +54,8 @@ body {
   background-color: ${({ theme }) => theme.mainBg};
   font-family: 'Kumbh Sans', sans-serif;
   height: fit-content;
+  padding: 0 3.9rem;
+
 }
 
 a {
