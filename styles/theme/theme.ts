@@ -5,7 +5,7 @@ declare module 'styled-components' {
     mainBg: string;
     bg: string;
     bodyPrimary: string;
-    button: string;
+    buttonFilter: string;
     bodySecondary: string;
     hover: string;
   }
@@ -16,7 +16,7 @@ export const lightTheme: DefaultTheme = {
   bg: '#ffffff',
   bodyPrimary: '#6E8098',
   bodySecondary: '#19202D',
-  button: '',
+  buttonFilter: '#6E8098',
   hover: '#222731',
 };
 
@@ -24,7 +24,7 @@ export const darkTheme: DefaultTheme = {
   mainBg: '#121721',
   bg: ' #19202D',
   bodyPrimary: '#6E8098',
-  button: '',
+  buttonFilter: '#ffffff',
   bodySecondary: '#ffffff',
   hover: '#90A4D4',
 };

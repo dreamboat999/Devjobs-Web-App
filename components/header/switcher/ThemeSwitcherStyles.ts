@@ -20,6 +20,7 @@ export const Switcher = styled.button<ISwitcherProps>`
   border-radius: 1.2rem;
   height: 100%;
   cursor: pointer;
+  z-index: 1;
 
   &::before {
     position: absolute;

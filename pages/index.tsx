@@ -4,6 +4,8 @@ import Head from 'next/head';
 import { ContentWrapper } from '../components/content-wrapper/ContentWrapperStyles';
 
 import Search from '../components/index/search/Search';
+import { Jobs } from '../components/jobs/JobsStyles';
+import Job from '../components/job/Job';
 
 const Home: NextPage = () => {
   return (
@@ -16,8 +18,22 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/images/favicon-32x32.png" />
       </Head>
+
       <ContentWrapper>
         <Search />
+        <Jobs>
+          <Job />
+          <Job />
+          <Job />
+          <Job />
+          <Job />
+          <Job />
+          <Job />
+          <Job />
+          <Job />
+          <Job />
+          <Job />
+        </Jobs>
       </ContentWrapper>
     </>
   );

@@ -5,6 +5,9 @@ import { GlobalStyles } from '../styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../styles/theme/theme';
 
+import { Provider } from 'react-redux';
+import store from '../store';
+
 import Header from '../components/header/Header';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -31,13 +34,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
   return (
-    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-      <GlobalStyles />
-      <Header currentTheme={theme} changeTheme={changeTheme}></Header>
-      <main>
-        <Component {...pageProps} />
-      </main>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+        <GlobalStyles />
+
+        <Header currentTheme={theme} changeTheme={changeTheme}></Header>
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

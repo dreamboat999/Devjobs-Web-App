@@ -16,7 +16,22 @@ export const SearchBar = styled.div`
   align-items: center;
 
   button {
-    margin-left: 2.6rem;
+    &.primary {
+      margin-left: 2.6rem;
+
+      ${media.phone} {
+        max-width: 4.8rem;
+        height: 4.8rem;
+        margin-left: 2.3rem;
+        padding: 0;
+
+        svg {
+          path {
+            fill: #ffff;
+          }
+        }
+      }
+    }
   }
 `;
 
@@ -39,6 +54,11 @@ export const InputControl = styled.div`
 
     ${media.tablet} {
       min-width: 22rem;
+    }
+
+    ${media.phone} {
+      min-width: 14rem;
+      padding: 0;
     }
   }
 
@@ -106,9 +126,16 @@ export const CheckBox = styled.div<ISearchProps>`
   background-position: center;
   border-radius: 0.3rem;
   cursor: pointer;
-
+  /* 
   &:hover {
     background-color: var(--color-violet);
     opacity: 0.25;
+  } */
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-violet);
+      opacity: 0.25;
+    }
   }
 `;

@@ -32,4 +32,8 @@ export const HeaderContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 3.9rem;
+
+  ${media.phone} {
+    padding: 0 2.4rem;
+  }
 `;

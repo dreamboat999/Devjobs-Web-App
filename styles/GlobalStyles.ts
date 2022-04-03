@@ -56,6 +56,10 @@ body {
   height: fit-content;
   padding: 0 3.9rem;
 
+  ${media.phone} {
+    padding: 0 2.4rem;
+  }
+
 }
 
 a {
@@ -75,5 +79,14 @@ main {
   height: fit-content;
   background-color: transparent;
 }
+
+#overlays {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+ 
+};
 
 `;
