@@ -8,6 +8,7 @@ declare module 'styled-components' {
     buttonFilter: string;
     bodySecondary: string;
     hover: string;
+    bodySummary: string;
   }
 }
 
@@ -18,6 +19,7 @@ export const lightTheme: DefaultTheme = {
   bodySecondary: '#19202D',
   buttonFilter: '#6E8098',
   hover: '#222731',
+  bodySummary: '#6E8098',
 };
 
 export const darkTheme: DefaultTheme = {
@@ -27,4 +29,5 @@ export const darkTheme: DefaultTheme = {
   buttonFilter: '#ffffff',
   bodySecondary: '#ffffff',
   hover: '#90A4D4',
+  bodySummary: '#6E8098',
 };

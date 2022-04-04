@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { JobCard, LogoWrapper } from './JobStyles';
+import { JobCard, LogoWrapper, JobSummary } from './JobStyles';
 
 const data = {
   id: 1,
@@ -43,6 +43,14 @@ const Job: React.FC = () => {
       <LogoWrapper bg={data.logoBackground}>
         <img src={data.logo} alt={`${data.company} logo`} />
       </LogoWrapper>
+      <JobSummary>
+        <p>
+          {data.postedAt} {'&#x2024'} {data.contract}
+        </p>
+        <h2>{data.position}</h2>
+        <p>{data.company}</p>
+      </JobSummary>
+      <h3>{data.location}</h3>
     </JobCard>
   );
 };
