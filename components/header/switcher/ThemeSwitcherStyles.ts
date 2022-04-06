@@ -29,11 +29,11 @@ export const Switcher = styled.button<ISwitcherProps>`
     height: 1.4rem;
     background-color: var(--color-violet);
     border-radius: 50%;
-    top: 0.6rem;
+    top: 0.5rem;
     left: ${({ currentTheme }) =>
       currentTheme === 'light' ? '0.5rem' : '2.9rem'};
 
-    transition: all 0.3s ease;
+    transition: left 0.3s ease;
   }
 
   &:hover {

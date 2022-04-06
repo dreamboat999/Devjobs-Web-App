@@ -1,3 +1,4 @@
+import { table } from 'console';
 import styled from 'styled-components';
 
 import { media } from '../../styles/GlobalStyles';
@@ -10,4 +11,18 @@ export const Jobs = styled.div`
   column-gap: 3rem;
   row-gap: 6.5rem;
   margin-top: 10.5rem;
+
+  ${media.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+  }
+
+  ${media.phone} {
+    grid-template-columns: 1fr;
+    row-gap: 5rem;
+    max-width: 50rem;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 5.7rem;
+  }
 `;

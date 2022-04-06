@@ -55,6 +55,7 @@ body {
   font-family: 'Kumbh Sans', sans-serif;
   height: fit-content;
   padding: 0 3.9rem;
+  transition: background-color 0.3s ease;
 
   ${media.phone} {
     padding: 0 2.4rem;

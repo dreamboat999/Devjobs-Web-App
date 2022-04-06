@@ -10,7 +10,7 @@ const ThemeSwitcher: React.FC<{
   changeTheme: () => void;
 }> = ({ currentTheme, changeTheme }) => {
   return (
-    <SwitcherWrapper>
+    <SwitcherWrapper datatype-theme={currentTheme}>
       <SunIcon />
       <Switcher currentTheme={currentTheme} onClick={() => changeTheme()} />
       <MoonIcon />

@@ -139,6 +139,7 @@ const Search: React.FC = () => {
             <CheckBoxWrapper>
               <CheckBox
                 isCheked={isChecked}
+                aria-checked={isChecked}
                 onClick={() => {
                   setIsCheked((prevState) => !prevState);
                 }}

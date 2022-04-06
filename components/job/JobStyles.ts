@@ -11,6 +11,7 @@ export const JobCard = styled.div`
   background-color: ${({ theme }) => theme.bg};
   border-radius: 0.6rem;
   padding: 3.2rem;
+  transition: background-color 0.3s ease;
 
   h3 {
     color: var(--color-violet);
@@ -34,12 +35,19 @@ export const JobSummary = styled.div`
   margin-top: 2.2rem;
   p {
     color: ${({ theme }) => theme.bodySummary};
+    display: flex;
+    gap: 1.2rem;
   }
 
   h2 {
     color: ${({ theme }) => theme.bodySecondary};
     font-size: var(--font-size-heading-m);
     margin-bottom: 1.2rem;
+    cursor: pointer;
+
+    &:hover {
+      color: #6e8098;
+    }
   }
 
   p:nth-of-type(1) {

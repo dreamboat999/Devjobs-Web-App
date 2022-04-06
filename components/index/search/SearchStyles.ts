@@ -14,6 +14,7 @@ export const SearchBar = styled.div`
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
+  transition: background-color 0.3s ease;
 
   button {
     &.primary {
@@ -113,6 +114,7 @@ export const CheckBoxWrapper = styled.div`
     margin-left: 2rem;
   }
 `;
+
 export const CheckBox = styled.div<ISearchProps>`
   height: 2.4rem;
   max-width: 2.4rem;
@@ -121,16 +123,11 @@ export const CheckBox = styled.div<ISearchProps>`
     isCheked ? 'var(--color-violet)' : theme.bodySecondary};
   opacity: ${({ isCheked }) => (isCheked ? '1' : '0.1')};
   background-image: ${({ isCheked }) =>
-    isCheked ? 'url("/images/desktop/icon-check.svg")' : ''};
+    isCheked ? 'url("/assets/desktop/icon-check.svg")' : ''};
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 0.3rem;
   cursor: pointer;
-  /* 
-  &:hover {
-    background-color: var(--color-violet);
-    opacity: 0.25;
-  } */
 
   @media (hover: hover) {
     &:hover {

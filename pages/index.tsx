@@ -7,6 +7,8 @@ import Search from '../components/index/search/Search';
 import { Jobs } from '../components/jobs/JobsStyles';
 import Job from '../components/job/Job';
 
+import Data from '../data.json';
+
 const Home: NextPage = () => {
   return (
     <>
@@ -22,17 +24,9 @@ const Home: NextPage = () => {
       <ContentWrapper>
         <Search />
         <Jobs>
-          <Job />
-          <Job />
-          <Job />
-          <Job />
-          <Job />
-          <Job />
-          <Job />
-          <Job />
-          <Job />
-          <Job />
-          <Job />
+          {Data.map((job) => (
+            <Job job={job} key={job.id} />
+          ))}
         </Jobs>
       </ContentWrapper>
     </>

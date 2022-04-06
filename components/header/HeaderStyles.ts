@@ -9,18 +9,18 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   height: 16.2rem;
   background-color: #5964e0;
-  background-image: url('/images/desktop/bg-pattern-header.svg');
+  background-image: url('/assets/desktop/bg-pattern-header.svg');
   border-bottom-left-radius: 10rem;
   display: flex;
   align-items: center;
   justify-content: center;
 
   ${media.tablet} {
-    background-image: url('/images/tablet/bg-pattern-header.svg');
+    background-image: url('/assets/tablet/bg-pattern-header.svg');
   }
 
   ${media.phone} {
-    background-image: url('./images/mobile/bg-pattern-header.svg');
+    background-image: url('./assets/mobile/bg-pattern-header.svg');
     border-bottom-left-radius: 0;
     height: 13.6rem;
   }
