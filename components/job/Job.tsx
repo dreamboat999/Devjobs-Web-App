@@ -26,6 +26,7 @@ export interface Requirements {
 }
 
 const Job: React.FC<{ job: IJob }> = ({ job }) => {
+  // const query = job.company.toLowerCase().replace(' ', '');
   return (
     <JobCard>
       <LogoWrapper bg={job.logoBackground}>
@@ -37,7 +38,7 @@ const Job: React.FC<{ job: IJob }> = ({ job }) => {
           <span>&#x02022;</span>
           <span>{job.contract}</span>
         </p>
-        <Link href={'#'} passHref>
+        <Link href={`/details/${job.id}`} passHref>
           <h2>{job.position}</h2>
         </Link>
         <p>{job.company}</p>

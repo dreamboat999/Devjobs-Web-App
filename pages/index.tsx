@@ -7,9 +7,11 @@ import Search from '../components/index/search/Search';
 import { Jobs } from '../components/jobs/JobsStyles';
 import Job from '../components/job/Job';
 
-import Data from '../data.json';
+import { GetStaticProps } from 'next';
 
-const Home: NextPage = () => {
+import { IJob } from '../@types/type';
+
+const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
   return (
     <>
       <Head>
@@ -18,19 +20,41 @@ const Home: NextPage = () => {
           name="description"
           content="Devjobs web app with NextJS and TypeScript"
         />
-        <link rel="icon" href="/images/favicon-32x32.png" />
+        <link rel="icon" href="/assets/favicon-32x32.png" />
       </Head>
 
       <ContentWrapper>
         <Search />
         <Jobs>
-          {Data.map((job) => (
+          {data.map((job) => (
             <Job job={job} key={job.id} />
           ))}
         </Jobs>
       </ContentWrapper>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const res = await fetch('http://localhost:3000/api/jobs');
+
+    if (!res.ok) {
+      throw new Error('Can not get job details');
+    }
+    const resData = await res.json();
+
+    return {
+      props: {
+        data: resData,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      notFound: true,
+    };
+  }
 };
 
 export default Home;

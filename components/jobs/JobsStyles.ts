@@ -1,4 +1,3 @@
-import { table } from 'console';
 import styled from 'styled-components';
 
 import { media } from '../../styles/GlobalStyles';

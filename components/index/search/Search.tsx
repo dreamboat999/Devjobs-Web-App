@@ -48,7 +48,7 @@ const Search: React.FC = () => {
       ? 'Full Time Only'
       : ' Full Time';
 
-  const searchHandler = () => {
+  const searchHandler = (type: string) => {
     const serarchQ = searhQuery.trim();
     const locationQ = locationQuery.trim();
     const isFullTime = isChecked;
@@ -58,7 +58,7 @@ const Search: React.FC = () => {
       locationQ,
       isFullTime,
     });
-    if (typeof windowWidth !== undefined && windowWidth! < 767) {
+    if (type === 'mobile') {
       dispatch(jobActions.toggleModal());
     }
   };
@@ -97,7 +97,12 @@ const Search: React.FC = () => {
             {checkText}
           </p>
         </CheckBoxWrapper>
-        <Button className="primary" onClick={searchHandler}>
+        <Button
+          className="primary"
+          onClick={() => {
+            searchHandler('desktop');
+          }}
+        >
           Search
         </Button>
       </SearchBar>
@@ -121,7 +126,12 @@ const Search: React.FC = () => {
       >
         <FilterIcon />
       </Button>
-      <Button className="search" onClick={searchHandler}>
+      <Button
+        className="search"
+        onClick={() => {
+          searchHandler('desktop');
+        }}
+      >
         <SearchIcon />
       </Button>
       <AnimatePresence>
@@ -152,7 +162,12 @@ const Search: React.FC = () => {
                 Full Time Only
               </p>
             </CheckBoxWrapper>
-            <Button className="primary" onClick={searchHandler}>
+            <Button
+              className="primary"
+              onClick={() => {
+                searchHandler('mobile');
+              }}
+            >
               Search
             </Button>
           </Modal>

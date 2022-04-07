@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { motion } from 'framer-motion';
-import { media } from '../../styles/GlobalStyles';
 
 export const BackDropWrapper = styled(motion.div)`
   position: fixed;
@@ -15,20 +14,21 @@ export const BackDropWrapper = styled(motion.div)`
 `;
 
 export const ModalOverlayWrapper = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  padding: 2.4rem;
   z-index: 30;
 `;
 
-export const ContentWrapper = styled.div`
-  position: relative;
+export const ContentWrapper = styled(motion.div)`
   max-width: 65rem;
-  width: 100%;
+  width: calc(100% - 4.8rem);
   border-radius: 0.6rem;
   z-index: 30;
   padding: 2.4rem;
