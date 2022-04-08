@@ -49,18 +49,27 @@ const Search: React.FC = () => {
       : ' Full Time';
 
   const searchHandler = (type: string) => {
-    const serarchQ = searhQuery.trim();
-    const locationQ = locationQuery.trim();
+    const serarchQ = searhQuery.trim().toLowerCase();
+    const locationQ = locationQuery.trim().toLowerCase();
     const isFullTime = isChecked;
 
-    console.log({
-      serarchQ,
-      locationQ,
-      isFullTime,
-    });
+    const updatedFiters = {
+      search: serarchQ,
+      location: locationQ,
+      isFullTiem: isFullTime,
+    };
+
+    dispatch(jobActions.setFiters(updatedFiters));
+
     if (type === 'mobile') {
       dispatch(jobActions.toggleModal());
+      document.body.style.overflow = 'visible';
     }
+  };
+
+  const filterHandler = () => {
+    dispatch(jobActions.toggleModal());
+    document.body.style.overflow = 'hidden';
   };
 
   if (typeof windowWidth !== undefined && windowWidth! > 767) {
@@ -118,12 +127,7 @@ const Search: React.FC = () => {
           value={searhQuery}
         />
       </InputControl>
-      <Button
-        className="filter"
-        onClick={() => {
-          dispatch(jobActions.toggleModal());
-        }}
-      >
+      <Button className="filter" onClick={filterHandler}>
         <FilterIcon />
       </Button>
       <Button

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { media } from '../../styles/GlobalStyles';
+import { media } from '../../../styles/GlobalStyles';
 
-export const Jobs = styled.div`
+export const Jobs = styled.section`
   max-width: 1110rem;
   width: 100%;
   display: grid;
@@ -10,6 +10,7 @@ export const Jobs = styled.div`
   column-gap: 3rem;
   row-gap: 6.5rem;
   margin-top: 10.5rem;
+  margin-bottom: 5.6rem;
 
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);
@@ -23,5 +24,6 @@ export const Jobs = styled.div`
     width: 100%;
     margin: 0 auto;
     margin-top: 5.7rem;
+    margin-bottom: 3.2rem;
   }
 `;

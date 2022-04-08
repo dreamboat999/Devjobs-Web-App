@@ -1,13 +1,15 @@
 import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit';
 
+interface IFilters {
+  search: string;
+  location: string;
+  isFullTiem: boolean;
+}
+
 interface IInitialState {
   isModal: boolean;
 
-  filters: {
-    search: string;
-    location: string;
-    isFullTiem: boolean;
-  };
+  filters: IFilters;
 }
 
 const initialState: IInitialState = {
@@ -26,6 +28,9 @@ const jobSlice = createSlice({
   reducers: {
     toggleModal(state) {
       state.isModal = !state.isModal;
+    },
+    setFiters(state, action: PayloadAction<IFilters>) {
+      state.filters = action.payload;
     },
   },
 });

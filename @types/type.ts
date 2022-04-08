@@ -18,3 +18,7 @@ export interface Requirements {
   content: string;
   items: string[];
 }
+
+export interface IJobProps {
+  bg: string;
+}

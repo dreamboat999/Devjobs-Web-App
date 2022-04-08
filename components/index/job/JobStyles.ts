@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-import { media } from '../../styles/GlobalStyles';
-
-interface IJobProps {
-  bg: string;
-}
+import { IJobProps } from '../../../@types/type';
 
 export const JobCard = styled.div`
   width: 100%;

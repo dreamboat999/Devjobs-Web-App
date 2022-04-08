@@ -25,6 +25,11 @@ export const Button = styled.button`
     &:hover {
       background-color: var(--color-light-violet);
     }
+
+    &:disabled {
+      background-color: var(--color-light-violet);
+      pointer-events: none;
+    }
   }
 
   &.search {
@@ -63,5 +68,18 @@ export const Button = styled.button`
         fill: ${({ theme }) => theme.buttonFilter};
       }
     }
+  }
+
+  &.secondary {
+    height: 4.8rem;
+    border: none;
+    background-color: ${({ theme }) => theme.buttonSecondary};
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0 2rem;
+    font-family: inherit;
+    color: ${({ theme }) => theme.bodySecondaryText};
+    font-weight: 700;
   }
 `;

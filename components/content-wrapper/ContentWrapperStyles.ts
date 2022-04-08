@@ -7,4 +7,11 @@ export const ContentWrapper = styled.div`
   margin: 0 auto;
   margin-top: 12rem;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button.load {
+    margin-bottom: 10rem;
+  }
 `;

@@ -1,32 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
+
 import React from 'react';
 
 import Link from 'next/link';
 
 import { JobCard, LogoWrapper, JobSummary } from './JobStyles';
 
-export interface IJob {
-  id: number;
-  company: string;
-  logo: string;
-  logoBackground: string;
-  position: string;
-  postedAt: string;
-  contract: string;
-  location: string;
-  website: string;
-  apply: string;
-  description: string;
-  requirements: Requirements;
-  role: Requirements;
-}
-
-export interface Requirements {
-  content: string;
-  items: string[];
-}
+import { IJob } from '../../../@types/type';
 
 const Job: React.FC<{ job: IJob }> = ({ job }) => {
-  // const query = job.company.toLowerCase().replace(' ', '');
   return (
     <JobCard>
       <LogoWrapper bg={job.logoBackground}>

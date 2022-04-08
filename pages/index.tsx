@@ -1,17 +1,59 @@
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import { ContentWrapper } from '../components/content-wrapper/ContentWrapperStyles';
 
 import Search from '../components/index/search/Search';
-import { Jobs } from '../components/jobs/JobsStyles';
-import Job from '../components/job/Job';
+import { Jobs } from '../components/index/jobs/JobsStyles';
+import Job from '../components/index/job/Job';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 import { GetStaticProps } from 'next';
 
 import { IJob } from '../@types/type';
+import { Button } from '../components/UI/button/ButtonStyles';
 
 const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
+  const [limit, setLimit] = useState<number>(9);
+  const { filters } = useSelector((state: RootState) => state.jobs);
+  const { search, location, isFullTiem } = filters;
+
+  const loadMoreHandler = () => {
+    setLimit((prevState) => prevState + 3);
+  };
+
+  const filterJobs = () => {
+    let dataToFilter = data;
+
+    if (search !== '') {
+      dataToFilter = dataToFilter.filter(
+        (job) =>
+          job.company.toLowerCase().includes(search) ||
+          job.position.toLowerCase().includes(search)
+      );
+    }
+    console.log(dataToFilter);
+
+    if (location !== '') {
+      dataToFilter = dataToFilter.filter((job) =>
+        job.location.toLowerCase().includes(location)
+      );
+    }
+    console.log(dataToFilter);
+
+    if (isFullTiem) {
+      dataToFilter = dataToFilter.filter((job) => job.contract === 'Full Time');
+    }
+
+    return dataToFilter;
+  };
+
+  data = filterJobs();
+
+  const isDisabled = limit === data.length || limit > data.length;
+
   return (
     <>
       <Head>
@@ -26,10 +68,17 @@ const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
       <ContentWrapper>
         <Search />
         <Jobs>
-          {data.map((job) => (
+          {data.slice(0, limit).map((job) => (
             <Job job={job} key={job.id} />
           ))}
         </Jobs>
+        <Button
+          className="primary load"
+          onClick={loadMoreHandler}
+          disabled={isDisabled}
+        >
+          Load More
+        </Button>
       </ContentWrapper>
     </>
   );
