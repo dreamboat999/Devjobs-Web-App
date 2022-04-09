@@ -29,7 +29,7 @@ const CompanyDetail: NextPage<{ job: IJob }> = ({ job }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`http://localhost:3000/api/jobs`);
+  const res = await fetch(`/api/jobs`);
 
   if (!res.ok) {
     throw new Error('Can not get job details');
@@ -46,9 +46,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/job-details/${context.params!.id}`
-    );
+    const res = await fetch(`/api/job-details/${context.params!.id}`);
 
     if (!res.ok) {
       throw new Error('Can not get job details');

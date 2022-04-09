@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
@@ -89,7 +89,7 @@ const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/jobs');
+    const res = await fetch('/api/jobs');
 
     if (!res.ok) {
       throw new Error('Can not get job details');
