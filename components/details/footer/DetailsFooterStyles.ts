@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 import { media } from '../../../styles/GlobalStyles';
 
-export const FooterWrapper = styled.section`
+import { motion } from 'framer-motion';
+
+export const FooterWrapper = styled(motion.section)`
   width: calc(100% + 7.8rem);
   margin-left: -3.9rem;
   background-color: ${({ theme }) => theme.bg};

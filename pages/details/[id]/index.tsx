@@ -8,6 +8,8 @@ import DetailsHeader from '../../../components/details/header/DetailsHeader';
 import JobInfo from '../../../components/details/job-info/JobInfo';
 import DetailsFooter from '../../../components/details/footer/DetailsFooter';
 
+import { AnimatePresence } from 'framer-motion';
+
 const CompanyDetail: NextPage<{ job: IJob }> = ({ job }) => {
   return (
     <>
@@ -17,9 +19,11 @@ const CompanyDetail: NextPage<{ job: IJob }> = ({ job }) => {
         <link rel="icon" href="/assets/favicon-32x32.png" />
       </Head>
 
-      <DetailsHeader job={job} />
-      <JobInfo job={job} />
-      <DetailsFooter job={job} />
+      <AnimatePresence>
+        <DetailsHeader job={job} />
+        <JobInfo job={job} />
+        <DetailsFooter job={job} />
+      </AnimatePresence>
     </>
   );
 };

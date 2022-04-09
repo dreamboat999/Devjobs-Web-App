@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 import { media } from '../../../styles/GlobalStyles';
+import { motion } from 'framer-motion';
 
-export const Jobs = styled.section`
+export const Jobs = styled(motion.section)`
   max-width: 1110rem;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 3rem;
   row-gap: 6.5rem;
+
   margin-top: 10.5rem;
   margin-bottom: 5.6rem;
 

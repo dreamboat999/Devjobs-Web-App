@@ -14,6 +14,7 @@ import { GetStaticProps } from 'next';
 
 import { IJob } from '../@types/type';
 import { Button } from '../components/UI/button/ButtonStyles';
+import { AnimatePresence } from 'framer-motion';
 
 const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
   const [limit, setLimit] = useState<number>(9);
@@ -34,14 +35,12 @@ const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
           job.position.toLowerCase().includes(search)
       );
     }
-    console.log(dataToFilter);
 
     if (location !== '') {
       dataToFilter = dataToFilter.filter((job) =>
         job.location.toLowerCase().includes(location)
       );
     }
-    console.log(dataToFilter);
 
     if (isFullTiem) {
       dataToFilter = dataToFilter.filter((job) => job.contract === 'Full Time');
@@ -67,11 +66,15 @@ const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
 
       <ContentWrapper>
         <Search />
-        <Jobs>
-          {data.slice(0, limit).map((job) => (
-            <Job job={job} key={job.id} />
-          ))}
+
+        <Jobs layout>
+          <AnimatePresence>
+            {data.slice(0, limit).map((job) => (
+              <Job job={job} key={job.id} />
+            ))}
+          </AnimatePresence>
         </Jobs>
+
         <Button
           className="primary load"
           onClick={loadMoreHandler}

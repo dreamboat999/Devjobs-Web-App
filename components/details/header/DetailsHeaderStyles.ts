@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { IJobProps } from '../../../@types/type';
 
 import { media } from '../../../styles/GlobalStyles';
+import { motion } from 'framer-motion';
 
-export const JobDetailHeader = styled.section`
+export const JobDetailHeader = styled(motion.section)`
   position: relative;
   max-width: 73rem;
   width: 100%;

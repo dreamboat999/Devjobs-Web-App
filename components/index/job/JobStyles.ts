@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
+import { motion } from 'framer-motion';
+
+import { media } from '../../../styles/GlobalStyles';
+
 import { IJobProps } from '../../../@types/type';
 
-export const JobCard = styled.div`
+export const JobCard = styled(motion.div)`
   width: 100%;
   background-color: ${({ theme }) => theme.bg};
   border-radius: 0.6rem;

@@ -6,7 +6,7 @@ interface ISearchProps {
   isCheked: boolean;
 }
 
-export const SearchBar = styled.div`
+export const SearchBar = styled.form`
   width: 100%;
   height: 8rem;
   border-radius: 0.6rem;

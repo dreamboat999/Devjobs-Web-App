@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 import { media } from '../../../styles/GlobalStyles';
 
-export const JobInfoWrapper = styled.section`
+import { motion } from 'framer-motion';
+
+export const JobInfoWrapper = styled(motion.section)`
   background-color: ${({ theme }) => theme.bg};
   padding: 4.6rem 4.8rem;
   max-width: 73rem;

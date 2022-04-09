@@ -10,7 +10,12 @@ import { IJob } from '../../../@types/type';
 
 const Job: React.FC<{ job: IJob }> = ({ job }) => {
   return (
-    <JobCard>
+    <JobCard
+      layout
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <LogoWrapper bg={job.logoBackground}>
         <img src={job.logo} alt={`${job.company} logo`} />
       </LogoWrapper>

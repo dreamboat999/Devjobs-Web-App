@@ -14,7 +14,11 @@ import { Button } from '../../UI/button/ButtonStyles';
 
 const DetailsHeader: React.FC<{ job: IJob }> = ({ job }) => {
   return (
-    <JobDetailHeader>
+    <JobDetailHeader
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <JobLogoWrapper bg={job.logoBackground}>
         <img src={job.logo} alt={`${job.company} logo`} />
       </JobLogoWrapper>

@@ -48,7 +48,8 @@ const Search: React.FC = () => {
       ? 'Full Time Only'
       : ' Full Time';
 
-  const searchHandler = (type: string) => {
+  const searchSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
     const serarchQ = searhQuery.trim().toLowerCase();
     const locationQ = locationQuery.trim().toLowerCase();
     const isFullTime = isChecked;
@@ -61,7 +62,7 @@ const Search: React.FC = () => {
 
     dispatch(jobActions.setFiters(updatedFiters));
 
-    if (type === 'mobile') {
+    if (isModal) {
       dispatch(jobActions.toggleModal());
       document.body.style.overflow = 'visible';
     }
@@ -74,7 +75,7 @@ const Search: React.FC = () => {
 
   if (typeof windowWidth !== undefined && windowWidth! > 767) {
     return (
-      <SearchBar>
+      <SearchBar onSubmit={searchSubmit}>
         <InputControl className="search">
           <SearchIcon />
           <SearchInput
@@ -106,20 +107,13 @@ const Search: React.FC = () => {
             {checkText}
           </p>
         </CheckBoxWrapper>
-        <Button
-          className="primary"
-          onClick={() => {
-            searchHandler('desktop');
-          }}
-        >
-          Search
-        </Button>
+        <Button className="primary">Search</Button>
       </SearchBar>
     );
   }
 
   return (
-    <SearchBar>
+    <SearchBar onSubmit={searchSubmit}>
       <InputControl className="search">
         <SearchInput
           placeholder={searchPlaceholder}
@@ -130,12 +124,7 @@ const Search: React.FC = () => {
       <Button className="filter" onClick={filterHandler}>
         <FilterIcon />
       </Button>
-      <Button
-        className="search"
-        onClick={() => {
-          searchHandler('desktop');
-        }}
-      >
+      <Button className="search">
         <SearchIcon />
       </Button>
       <AnimatePresence>
@@ -166,14 +155,7 @@ const Search: React.FC = () => {
                 Full Time Only
               </p>
             </CheckBoxWrapper>
-            <Button
-              className="primary"
-              onClick={() => {
-                searchHandler('mobile');
-              }}
-            >
-              Search
-            </Button>
+            <Button className="primary">Search</Button>
           </Modal>
         )}
       </AnimatePresence>

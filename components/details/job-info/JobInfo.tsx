@@ -12,7 +12,11 @@ import { Button } from '../../UI/button/ButtonStyles';
 
 const JobInfo: React.FC<{ job: IJob }> = ({ job }) => {
   return (
-    <JobInfoWrapper>
+    <JobInfoWrapper
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <JobMeta>
         <JobMetaText>
           <p>

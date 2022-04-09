@@ -7,7 +7,11 @@ import { Button } from '../../UI/button/ButtonStyles';
 
 const DetailsFooter: React.FC<{ job: IJob }> = ({ job }) => {
   return (
-    <FooterWrapper>
+    <FooterWrapper
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+    >
       <Footer>
         <FooterText>
           <h3>{job.position}</h3>
