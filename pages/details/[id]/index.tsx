@@ -10,6 +10,8 @@ import DetailsFooter from '../../../components/details/footer/DetailsFooter';
 
 import { AnimatePresence } from 'framer-motion';
 
+import Data from '../../../data.json';
+
 const CompanyDetail: NextPage<{ job: IJob }> = ({ job }) => {
   return (
     <>
@@ -29,13 +31,9 @@ const CompanyDetail: NextPage<{ job: IJob }> = ({ job }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`/api/jobs`);
+  const data = Data;
 
-  if (!res.ok) {
-    throw new Error('Can not get job details');
-  }
-  const resData: IJob[] = await res.json();
-  const paths = resData.map((job) => ({
+  const paths = data.map((job) => ({
     params: {
       id: job.id.toString(),
     },
@@ -45,25 +43,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  try {
-    const res = await fetch(`/api/job-details/${context.params!.id}`);
+  const data = Data;
+  const job = data.find((job) => job.id.toString() === context.params!.id);
 
-    if (!res.ok) {
-      throw new Error('Can not get job details');
-    }
-    const { job } = await res.json();
-
-    return {
-      props: {
-        job,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      notFound: true,
-    };
-  }
+  return {
+    props: {
+      job,
+    },
+  };
 };
 
 export default CompanyDetail;

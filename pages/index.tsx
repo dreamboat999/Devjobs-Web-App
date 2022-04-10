@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { GetStaticProps } from 'next';
 
 import { ContentWrapper } from '../components/content-wrapper/ContentWrapperStyles';
-
 import Search from '../components/index/search/Search';
 import { Jobs } from '../components/index/jobs/JobsStyles';
 import Job from '../components/index/job/Job';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store';
-
-import { GetStaticProps } from 'next';
-
 import { IJob } from '../@types/type';
 import { Button } from '../components/UI/button/ButtonStyles';
+
 import { AnimatePresence } from 'framer-motion';
+
+import Data from '../data.json';
 
 const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
   const [limit, setLimit] = useState<number>(9);
@@ -88,25 +88,12 @@ const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const res = await fetch('/api/jobs');
+  const data = Data;
 
-    if (!res.ok) {
-      throw new Error('Can not get job details');
-    }
-    const resData = await res.json();
-
-    return {
-      props: {
-        data: resData,
-      },
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      notFound: true,
-    };
-  }
+  return {
+    props: {
+      data,
+    },
+  };
 };
-
 export default Home;
