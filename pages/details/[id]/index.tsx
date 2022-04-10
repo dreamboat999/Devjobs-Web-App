@@ -22,9 +22,9 @@ const CompanyDetail: NextPage<{ job: IJob }> = ({ job }) => {
       </Head>
 
       <AnimatePresence>
-        <DetailsHeader job={job} />
-        <JobInfo job={job} />
-        <DetailsFooter job={job} />
+        <DetailsHeader job={job} key={'header'} />
+        <JobInfo job={job} key={'info'} />
+        <DetailsFooter job={job} key={'footer'} />
       </AnimatePresence>
     </>
   );

@@ -20,7 +20,7 @@ export const HeaderWrapper = styled.header`
   }
 
   ${media.phone} {
-    background-image: url('./assets/mobile/bg-pattern-header.svg');
+    background-image: url('/assets/mobile/bg-pattern-header.svg');
     border-bottom-left-radius: 0;
     height: 13.6rem;
   }
