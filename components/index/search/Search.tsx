@@ -50,6 +50,7 @@ const Search: React.FC = () => {
 
   const searchSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+
     const serarchQ = searhQuery.trim().toLowerCase();
     const locationQ = locationQuery.trim().toLowerCase();
     const isFullTime = isChecked;
@@ -121,7 +122,7 @@ const Search: React.FC = () => {
           value={searhQuery}
         />
       </InputControl>
-      <Button className="filter" onClick={filterHandler}>
+      <Button className="filter" onClick={filterHandler} type="button">
         <FilterIcon />
       </Button>
       <Button className="search">
@@ -155,7 +156,9 @@ const Search: React.FC = () => {
                 Full Time Only
               </p>
             </CheckBoxWrapper>
-            <Button className="primary">Search</Button>
+            <Button className="primary" onClick={searchSubmit}>
+              Search
+            </Button>
           </Modal>
         )}
       </AnimatePresence>
