@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { PrismaClient } from '@prisma/client';
 
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { IJob } from '../../../@types/type';
@@ -30,8 +31,10 @@ const CompanyDetail: NextPage<{ job: IJob }> = ({ job }) => {
   );
 };
 
+const prisma = new PrismaClient();
+
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = Data;
+  const data = await prisma.jobs.findMany();
 
   const paths = data.map((job) => ({
     params: {
@@ -44,11 +47,40 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const data = Data;
-  const job = data.find((job) => job.id.toString() === context.params!.id);
+
+  const job = await prisma.jobs.findUnique({
+    where: {
+      id: context.params!.id?.toString(),
+    },
+    include: {
+      requirement: {
+        select: {
+          content: true,
+          items: {
+            select: {
+              item: true,
+            },
+          },
+        },
+      },
+      role: {
+        select: {
+          content: true,
+          items: {
+            select: {
+              item: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  console.log('this is jog ', job);
 
   return {
     props: {
-      job,
+      job: Data[0],
     },
   };
 };

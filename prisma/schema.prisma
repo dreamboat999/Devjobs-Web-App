@@ -1,0 +1,58 @@
+generator client {
+    provider = "prisma-client-js"
+  }
+  
+  datasource db {
+    provider = "sqlite"
+    url      = "file:./dev.db"
+  }
+  
+  
+  model Jobs {
+      id              String @id @default(cuid())
+      company         String
+      logo            String
+      logoBackground  String
+      position        String
+      postedAt        String
+      contract        String
+      location        String
+      website         String
+      apply           String
+      description     String
+      requirements    Requirements?
+      role            Role?
+      
+  }
+  
+  model Requirements {
+    id              String @id @default(cuid())
+    content         String
+    items           ReqItems[] 
+    job_id          String
+    job             Jobs @relation(fields: [job_id], references: [id])
+         
+  }
+  
+  model ReqItems {
+    id              String @id @default(cuid())
+    item            String
+    req_id          String
+    req             Requirements @relation(fields: [req_id], references: [id])
+  
+  }
+  
+  model Role {
+    id              String @id @default(cuid())
+    content         String
+    items           RoleItems[]
+    job_id          String
+    job             Jobs @relation(fields: [job_id], references: [id])
+  }
+  
+  model RoleItems {
+     id              String @id @default(cuid())
+     item            String
+     role_id         String
+     role            Role @relation(fields: [role_id], references: [id])
+  }

@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { GetStaticProps } from 'next';
+import { PrismaClient } from '@prisma/client';
 
 import { ContentWrapper } from '../components/content-wrapper/ContentWrapperStyles';
 import Search from '../components/index/search/Search';
@@ -16,7 +17,7 @@ import { AnimatePresence } from 'framer-motion';
 
 import Data from '../data.json';
 
-const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
+const Home: NextPage<{ initialData: IJob[] }> = ({ initialData }) => {
   const [limit, setLimit] = useState<number>(9);
   const { filters } = useSelector((state: RootState) => state.jobs);
   const { search, location, isFullTiem } = filters;
@@ -26,7 +27,7 @@ const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
   };
 
   const filterJobs = () => {
-    let dataToFilter = data;
+    let dataToFilter = initialData;
 
     if (search !== '') {
       dataToFilter = dataToFilter.filter(
@@ -49,9 +50,9 @@ const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
     return dataToFilter;
   };
 
-  data = filterJobs();
+  initialData = filterJobs();
 
-  const isDisabled = limit === data.length || limit > data.length;
+  const isDisabled = limit === initialData.length || limit > initialData.length;
 
   return (
     <>
@@ -69,7 +70,7 @@ const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
 
         <Jobs layout>
           <AnimatePresence>
-            {data.slice(0, limit).map((job) => (
+            {initialData.slice(0, limit).map((job) => (
               <Job job={job} key={job.id} />
             ))}
           </AnimatePresence>
@@ -87,12 +88,14 @@ const Home: NextPage<{ data: IJob[] }> = ({ data }) => {
   );
 };
 
+const prisma = new PrismaClient();
+
 export const getStaticProps: GetStaticProps = async () => {
-  const data = Data;
+  const data = await prisma.jobs.findMany();
 
   return {
     props: {
-      data,
+      initialData: data,
     },
   };
 };
