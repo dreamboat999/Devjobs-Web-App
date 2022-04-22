@@ -61,23 +61,23 @@ const Home: NextPage<{ initialData: IJob[]; maxNum: number }> = ({
   useEffect(() => {
     filterJobs();
 
-    const searchDB = async () => {
-      try {
-        const res = await fetch(
-          `/api/search/${search ? search : 'none'}/${
-            location ? location : 'none'
-          }/${isFullTiem && isFullTiem}`
-        );
-        const resData = await res.json();
-        if (!res.ok) {
-          throw new Error('Could not find data');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    // const searchDB = async () => {
+    //   try {
+    //     const res = await fetch(
+    //       `/api/search/${search ? search : 'none'}/${
+    //         location ? location : 'none'
+    //       }/${isFullTiem && isFullTiem}`
+    //     );
+    //     const resData = await res.json();
+    //     if (!res.ok) {
+    //       throw new Error('Could not find data');
+    //     }
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
 
-    searchDB();
+    // searchDB();
   }, [search, location, isFullTiem]);
 
   const isDisabled = limit === maxNum || limit > maxNum;
