@@ -1,7 +1,5 @@
 //  /api/jobs
 
-import Data from '../../data.json';
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { PrismaClient } from '@prisma/client';
@@ -10,43 +8,43 @@ import { IJob } from '../../@types/type';
 
 const prisma = new PrismaClient();
 
-const insertJob = async (job: IJob) => {
-  await prisma.jobs.create({
-    data: {
-      company: job.company,
-      logo: job.logo,
-      logoBackground: job.logoBackground,
-      position: job.position,
-      postedAt: job.postedAt,
-      contract: job.contract,
-      location: job.location,
-      website: job.website,
-      apply: job.apply,
-      description: job.description,
-      requirement: {
-        create: {
-          content: job.requirements.content,
-          items: {
-            create: job.requirements.items.map((reqItem) => {
-              return { item: reqItem };
-            }),
-          },
-        },
-      },
+// const insertJob = async (job: IJob) => {
+//   await prisma.jobs.create({
+//     data: {
+//       company: job.company,
+//       logo: job.logo,
+//       logoBackground: job.logoBackground,
+//       position: job.position,
+//       postedAt: job.postedAt,
+//       contract: job.contract,
+//       location: job.location,
+//       website: job.website,
+//       apply: job.apply,
+//       description: job.description,
+//       requirement: {
+//         create: {
+//           content: job.requirement.content,
+//           items: {
+//             create: job.requirement.items.map((reqItem) => {
+//               return { item: reqItem };
+//             }),
+//           },
+//         },
+//       },
 
-      role: {
-        create: {
-          content: job.role.content,
-          items: {
-            create: job.role.items.map((roleItem) => {
-              return { item: roleItem };
-            }),
-          },
-        },
-      },
-    },
-  });
-};
+//       role: {
+//         create: {
+//           content: job.role.content,
+//           items: {
+//             create: job.role.items.map((roleItem) => {
+//               return { item: roleItem };
+//             }),
+//           },
+//         },
+//       },
+//     },
+//   });
+// };
 
 // const dataLoad = async () => {
 //   try {

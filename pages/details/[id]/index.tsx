@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { PrismaClient } from '@prisma/client';
 
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetServerSideProps, GetStaticPaths } from 'next';
 import { IJob } from '../../../@types/type';
 
 import DetailsHeader from '../../../components/details/header/DetailsHeader';
@@ -33,21 +33,19 @@ const CompanyDetail: NextPage<{ job: IJob }> = ({ job }) => {
 
 const prisma = new PrismaClient();
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await prisma.jobs.findMany();
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const data = await prisma.jobs.findMany();
 
-  const paths = data.map((job) => ({
-    params: {
-      id: job.id.toString(),
-    },
-  }));
+//   const paths = data.map((job) => ({
+//     params: {
+//       id: job.id.toString(),
+//     },
+//   }));
 
-  return { paths, fallback: false };
-};
+//   return { paths, fallback: false };
+// };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const data = Data;
-
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const job = await prisma.jobs.findUnique({
     where: {
       id: context.params!.id?.toString(),
@@ -76,11 +74,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   });
 
-  console.log('this is jog ', job);
-
   return {
     props: {
-      job: Data[0],
+      job,
     },
   };
 };

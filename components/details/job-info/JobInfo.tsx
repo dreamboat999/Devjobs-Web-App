@@ -35,17 +35,17 @@ const JobInfo: React.FC<{ job: IJob }> = ({ job }) => {
       <JobDescription>
         <p>{job.description}</p>
         <h3>Requirements</h3>
-        <p>{job.requirements.content}</p>
+        <p>{job.requirement.content}</p>
         <ul>
-          {job.requirements.items.map((item, index) => (
-            <li key={index}>{item}</li>
+          {job.requirement.items.map((item, index) => (
+            <li key={index}>{item.item}</li>
           ))}
         </ul>
         <h3>What You Will Do</h3>
         <p>{job.role.content}</p>
         <ol>
           {job.role.items.map((item, index) => (
-            <li key={index}>{item}</li>
+            <li key={index}>{item.item}</li>
           ))}
         </ol>
       </JobDescription>

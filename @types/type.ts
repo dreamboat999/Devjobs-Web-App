@@ -10,13 +10,16 @@ export interface IJob {
   website: string;
   apply: string;
   description: string;
-  requirements: Requirements;
+  requirement: Requirements;
   role: Requirements;
 }
 
 export interface Requirements {
   content: string;
-  items: string[];
+  items: Item[];
+}
+export interface Item {
+  item: string;
 }
 
 export interface IJobProps {

@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { PrismaClient } from '@prisma/client';
 
 import { ContentWrapper } from '../components/content-wrapper/ContentWrapperStyles';
@@ -15,14 +15,22 @@ import { Button } from '../components/UI/button/ButtonStyles';
 
 import { AnimatePresence } from 'framer-motion';
 
-import Data from '../data.json';
+const prisma = new PrismaClient();
 
-const Home: NextPage<{ initialData: IJob[] }> = ({ initialData }) => {
+const Home: NextPage<{ initialData: IJob[]; maxNum: number }> = ({
+  initialData,
+  maxNum,
+}) => {
   const [limit, setLimit] = useState<number>(9);
   const { filters } = useSelector((state: RootState) => state.jobs);
   const { search, location, isFullTiem } = filters;
+  const [data, setData] = useState<IJob[]>(initialData);
 
-  const loadMoreHandler = () => {
+  const loadMoreHandler = async () => {
+    const res = await fetch(`/api/pagination/${limit}`);
+    const resData = await res.json();
+
+    setData((prevState) => prevState.concat(resData));
     setLimit((prevState) => prevState + 3);
   };
 
@@ -47,12 +55,32 @@ const Home: NextPage<{ initialData: IJob[] }> = ({ initialData }) => {
       dataToFilter = dataToFilter.filter((job) => job.contract === 'Full Time');
     }
 
-    return dataToFilter;
+    setData(dataToFilter);
   };
 
-  initialData = filterJobs();
+  useEffect(() => {
+    filterJobs();
 
-  const isDisabled = limit === initialData.length || limit > initialData.length;
+    const searchDB = async () => {
+      try {
+        const res = await fetch(
+          `/api/search/${search ? search : 'none'}/${
+            location ? location : 'none'
+          }/${isFullTiem && isFullTiem}`
+        );
+        const resData = await res.json();
+        if (!res.ok) {
+          throw new Error('Could not find data');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    searchDB();
+  }, [search, location, isFullTiem]);
+
+  const isDisabled = limit === maxNum || limit > maxNum;
 
   return (
     <>
@@ -70,7 +98,7 @@ const Home: NextPage<{ initialData: IJob[] }> = ({ initialData }) => {
 
         <Jobs layout>
           <AnimatePresence>
-            {initialData.slice(0, limit).map((job) => (
+            {data.map((job) => (
               <Job job={job} key={job.id} />
             ))}
           </AnimatePresence>
@@ -88,14 +116,18 @@ const Home: NextPage<{ initialData: IJob[] }> = ({ initialData }) => {
   );
 };
 
-const prisma = new PrismaClient();
+export const getServerSideProps: GetServerSideProps = async () => {
+  const data = await prisma.jobs.findMany({
+    skip: 0,
+    take: 9,
+  });
 
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await prisma.jobs.findMany();
+  const dataLength = await (await prisma.jobs.findMany({})).length;
 
   return {
     props: {
       initialData: data,
+      maxNum: dataLength,
     },
   };
 };
